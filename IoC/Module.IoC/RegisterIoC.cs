@@ -5,11 +5,11 @@ using AutoMapper;
 using Module.Dto.Config;
 using Module.Factory.Base;
 using Module.Factory.Conexao;
-using Module.Factory.Interface;
 using Module.Factory.Interface.Conexao;
 using Module.Integration.Base;
 using Module.IoC.Interface;
 using Module.IoC.Interface.Base;
+using Module.IoC.Mapper;
 using Module.IoC.Middleware;
 using Module.Repository.Base;
 using Module.Service.Base;
@@ -50,20 +50,12 @@ namespace Module.IoC
         /// <param name="ehAmbienteTeste">Indica se é um ambiente de teste para considerar mock de objetos</param>
         private static void ConfigureAutoMapper(ContainerBuilder builder)
         {
-            var mapperConfiguration = new MapperConfiguration(ConfigureMapper);
+            var mapperConfiguration = new MapperConfiguration(MapperRegistration.ConfigureMapper);
             var mapper = mapperConfiguration.CreateMapper();
 
             builder.Register<IMapper>((t) => mapper)
                    .SingleInstance()
                    .PropertiesAutowired();
-        }
-
-        /// <summary>
-        /// Método chamada na inicialização para configurar as conversões
-        /// </summary>
-        /// <param name="mapperConfigExpression"></param>
-        private static void ConfigureMapper(IMapperConfigurationExpression mapperConfigExpression)
-        {
         }
 
         /// <summary>
@@ -137,10 +129,12 @@ namespace Module.IoC
             builder.RegisterType<DbConnectionFactory>()
                 .As<IDbTransactionFactory>()
                 .As<IDbConnectionFactory>()
-                .UsingConstructor(typeof(string))
+                .UsingConstructor(typeof(string), typeof(string))
                 .InstancePerLifetimeScope()
+                .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies)
                 .WithParameters(new[] {
-                    new NamedParameter("connectionString", conexaoDto.Default)
+                    new NamedParameter("sqliteDirectory", conexaoDto.Default),
+                    new NamedParameter("rootPath", registro.Settings.WebRootPath)
                 });
 
             builder.RegisterAssemblyTypes(Assembly.Load(typeof(BaseRepository).Assembly.GetName()))

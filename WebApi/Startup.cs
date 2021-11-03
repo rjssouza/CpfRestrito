@@ -29,7 +29,6 @@ namespace WebApi
     public class Startup : IControllerRegister
     {
         private SettingsDto _settings;
-        private readonly IWebHostEnvironment _env;
 
         /// <summary>
         /// Construtor de ambiente
@@ -37,7 +36,6 @@ namespace WebApi
         /// <param name="env">Ambiente</param>
         public Startup(IWebHostEnvironment env)
         {
-            _env = env;
 #if DEBUG
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -217,7 +215,7 @@ namespace WebApi
         {
             var settings = new SettingsDto();
             Configuration.Bind(settings);
-            settings.WebRootPath = _env.ContentRootPath;
+            settings.WebRootPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             _settings = settings;
         }
