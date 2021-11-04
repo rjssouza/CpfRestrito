@@ -26,6 +26,7 @@
     <ProjectReference Include="..\..\Factory\Module.Factory.Interface\Module.Factory.Interface.csproj" />
     <ProjectReference Include="..\..\Integration\Module.Integration.Interface\Module.Integration.Interface.csproj" />
     <ProjectReference Include="..\..\Service\Module.Service.Interface\Module.Service.Interface.csproj" />
+    <ProjectReference Include="..\..\Utilidade\Module.Util\Module.Util.csproj" />
     <ProjectReference Include="..\Module.Service.Validation.Interface\Module.Service.Validation.Interface.csproj" />
   </ItemGroup>
 

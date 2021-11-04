@@ -11,7 +11,7 @@ namespace Module.Service.Validation.Base
     /// </summary>
     public abstract class BaseValidation : IDisposable
     {
-        protected ValidationSummary summary;
+        protected ValidationSummary _summary;
         private bool disposedValue;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Module.Service.Validation.Base
 
         public BaseValidation()
         {
-            summary = new ValidationSummary();
+            _summary = new ValidationSummary();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Module.Service.Validation.Base
             {
                 if (disposing)
                 {
-                    summary = null;
+                    _summary = null;
                 }
 
                 disposedValue = true;
@@ -61,10 +61,15 @@ namespace Module.Service.Validation.Base
         /// </summary>
         protected virtual void OnValidated()
         {
-            if (summary.ContainsErrors)
+            if (_summary.ContainsErrors)
             {
-                throw new ValidationException(summary);
+                throw new ValidationException(_summary);
             }
+        }
+
+        protected void AddError(string subject, string message)
+        {
+            _summary.AddError(subject, message);
         }
     }
 }

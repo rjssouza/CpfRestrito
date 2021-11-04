@@ -19,7 +19,7 @@ namespace Module.Repository.Interface.Base
         /// </summary>
         /// <param name="entity">Modelo informado</param>
         /// <returns>Resultado da ação</returns>
-        Guid Insert(TModel model);
+        TKeyType Insert<TKeyType>(TModel model);
 
         /// <summary>
         /// Obtem modelo pelo id informado

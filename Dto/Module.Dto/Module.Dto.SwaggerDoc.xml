@@ -135,6 +135,26 @@
             Endereço raiz da aplicação
             </summary>
         </member>
+        <member name="T:Module.Dto.RestrictedCpfDto">
+            <summary>
+            Consulta restrição cpf
+            </summary>
+        </member>
+        <member name="P:Module.Dto.RestrictedCpfDto.Cpf">
+            <summary>
+            Cpf para consulta de restrição
+            </summary>
+        </member>
+        <member name="P:Module.Dto.RestrictedCpfDto.CreatedAt">
+            <summary>
+            Data de criação UTC
+            </summary>
+        </member>
+        <member name="P:Module.Dto.RestrictedCpfDto.Name">
+            <summary>
+            Nome do dono do cpf
+            </summary>
+        </member>
         <member name="T:Module.Dto.Validation.Api.ApiException">
             <summary>
             Exceção api

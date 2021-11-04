@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Module.IoC.Mapper.Configuracoes;
 using System;
 
 namespace Module.IoC.Mapper
@@ -19,7 +20,7 @@ namespace Module.IoC.Mapper
                 throw new ArgumentNullException(nameof(mapperConfigExpression));
             }
 
-
+            mapperConfigExpression.AddProfile(new RestrictedCpfProfile());
         }
     }
 }

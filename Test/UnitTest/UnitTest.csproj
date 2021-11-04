@@ -27,11 +27,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="NUnitTestAdapter" Version="2.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,6 +40,7 @@
     <ProjectReference Include="..\..\Dto\Module.Dto\Module.Dto.csproj" />
     <ProjectReference Include="..\..\IoC\Module.IoC.Interface\Module.IoC.Interface.csproj" />
     <ProjectReference Include="..\..\IoC\Module.IoC.Register\Module.IoC.Register.csproj" />
+    <ProjectReference Include="..\..\Repository\Module.Repository.Interface\Module.Repository.Interface.csproj" />
     <ProjectReference Include="..\..\Service\Module.Service.Interface\Module.Service.Interface.csproj" />
     <ProjectReference Include="..\..\ServiceValidation\Module.Service.Validation.Interface\Module.Service.Validation.Interface.csproj" />
     <ProjectReference Include="..\..\Utilidade\Module.Util\Module.Util.csproj" />

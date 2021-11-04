@@ -6,13 +6,12 @@ using Module.Service.Validation.Interface.Base;
 
 namespace Module.Service.Base
 {
-    public abstract class BaseEntityService<TModel, TDto, TKeyType, TRepository, TValidation> : BaseEntityService<TModel, TDto, TKeyType, TRepository>
+    public abstract class BaseEntityValidationService<TModel, TDto, TKeyType, TValidation> : BaseEntityService<TModel, TDto, TKeyType>
         where TModel : BaseModel
-        where TRepository : IBaseCrudRepository<TModel>
         where TValidation : IBaseCrudValidation<TModel>
         where TDto : BaseDto
     {
-        public abstract TValidation CrudValidation { get; set; }
+        public virtual TValidation CrudValidation { get; set; }
 
         /// <summary>
         /// Efetua a chamada para validação de deleção de dados da entidade

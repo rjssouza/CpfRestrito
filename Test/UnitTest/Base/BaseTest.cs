@@ -6,24 +6,23 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using Module.Dto.Config;
+using Module.Dto.Validation.Api;
 using Module.IoC.Interface;
 using Module.IoC.Register;
+using NUnit.Framework;
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace UnitTest.Base
 {
     /// <summary>
     /// Classe base para elaboração de testes unitarios utilizando automock
     /// </summary>
-    public class BaseTest : ITestRegister
+    public abstract class BaseTest : ITestRegister
     {
-        public const string TEXT_LENGTH_100 = "Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio";
-        public const string TEXT_LENGTH_255 = "Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id m";
-        public const string TEXT_LENGTH_50 = "Nam quis nulla. Integer malesuada. In in enim a ar";
-        public const string TEXT_LENGTH_500 = "Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque ipsum. Nulla non arcu lacinia neque faucibus fringilla. Nulla non lectus sed nisl molestie malesuada. Proin in tellus sit amet nibh dignissim sagittis. Vivamus luctus egestas leo. Maecenas sollicitudin. Nullam rhoncus aliquam met";
-        public const string TEXT_LENGTH_501 = "Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque ipsum. Nulla non arcu lacinia neque faucibus fringilla. Nulla non lectus sed nisl molestie malesuada. Proin in tellus sit amet nibh dignissim sagittis. Vivamus luctus egestas leo. Maecenas sollicitudin. Nullam rhoncus aliquam mety";
-
         /// <summary>
         /// Container autofac
         /// </summary>
@@ -53,17 +52,27 @@ namespace UnitTest.Base
         {
             DbConnection = new DbSettingsDto()
             {
+                 Default = "\\dados\\sqltest.db"
             },
             ApiServicesUrl = new ExternalApiSettingsDto()
             {
-            }
+            },
+            WebRootPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
         };
 
         public BaseTest()
         {
+
+        }
+
+        [SetUp]
+        public void Setup()
+        {
             var builder = new ContainerBuilder();
 
             Register.RegisterDependencyInjection(builder, this);
+
+            MockRepository();
         }
 
         /// <summary>
@@ -73,7 +82,7 @@ namespace UnitTest.Base
         public void AtribuirCicloVida(IContainer container)
         {
             Container = container;
-            Container.BeginLifetimeScope();
+            //Container.BeginLifetimeScope();
             TestMock = AutoMock.GetLoose();
             Mapper = container.Resolve<IMapper>();
         }
@@ -144,6 +153,28 @@ namespace UnitTest.Base
         }
 
         /// <summary>
+        /// Testa e analisa se a exceção está em acordo com a mensagem esperada
+        /// </summary>
+        /// <param name="action">Ação</param>
+        /// <param name="expectedMessage">Mensagem esperada</param>
+        protected static void AssertValidationExceptionMessage(Action action, string expectedMessage)
+        {
+            var result = string.Empty;
+            try
+            {
+                action.Invoke();
+            }
+            catch (ValidationException e)
+            {
+                result = e.Validation.GetErrorMessage();
+            }
+
+            string[] messageList = Regex.Split(result, Environment.NewLine);
+
+            Assert.Contains(expectedMessage, messageList);
+        }
+
+        /// <summary>
         /// Dispose pattern
         /// </summary>
         /// <param name="disposing"></param>
@@ -162,6 +193,8 @@ namespace UnitTest.Base
                 disposedValue = true;
             }
         }
+
+        protected abstract void MockRepository();
     }
 
     /// <summary>

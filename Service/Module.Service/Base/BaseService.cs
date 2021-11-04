@@ -26,7 +26,7 @@ namespace Module.Service.Base
         /// <summary>
         /// AutoMapper
         /// </summary>
-        protected IMapper Mapper { get; set; }
+        public IMapper Mapper { get; set; }
 
         public BaseService()
         {

@@ -3,7 +3,6 @@ using Module.Factory.Interface.Conexao;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
-using System.Reflection;
 
 namespace Module.Factory.Conexao
 {
@@ -100,10 +99,10 @@ namespace Module.Factory.Conexao
             _dbConnection = null;
         }
 
-        private static void CreateCaptureTable(SQLiteConnection tempConnection)
+        private static void CreateRestrictedCpfTable(SQLiteConnection tempConnection)
         {
             using var createCaptureTable = tempConnection.CreateCommand();
-            createCaptureTable.CommandText = "CREATE TABLE IF NOT EXISTS PokemonCapture(id text primary key, pokemon_id int, pokemon_name varchar(50), trainer_cpf varchar(11), trainer_name varchar(50))";
+            createCaptureTable.CommandText = "CREATE TABLE IF NOT EXISTS RestrictedCpf(id blob primary key, cpf varchar(11) not null , name varchar(50) not null , created_at datetime)";
             createCaptureTable.ExecuteNonQuery();
         }
 
@@ -121,7 +120,7 @@ namespace Module.Factory.Conexao
 
                 using var tempConnection = new SQLiteConnection(connectionString);
                 tempConnection.Open();
-                CreateCaptureTable(tempConnection);
+                CreateRestrictedCpfTable(tempConnection);
             }
 
             return connectionString;

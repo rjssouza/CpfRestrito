@@ -12,6 +12,7 @@ using Module.IoC.Interface.Base;
 using Module.IoC.Mapper;
 using Module.IoC.Middleware;
 using Module.Repository.Base;
+using Module.Repository.Interface.Base;
 using Module.Service.Base;
 using Module.Service.Validation.Base;
 using Module.Util.Log;
@@ -54,8 +55,9 @@ namespace Module.IoC
             var mapper = mapperConfiguration.CreateMapper();
 
             builder.Register<IMapper>((t) => mapper)
-                   .SingleInstance()
-                   .PropertiesAutowired();
+                   .As<IMapper>()
+                   .InstancePerLifetimeScope()
+                   .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
         }
 
         /// <summary>
@@ -143,6 +145,12 @@ namespace Module.IoC
                 .AsImplementedInterfaces()
                 .EnableClassInterceptors()
                 .InterceptedBy(typeof(TransactionInterceptor))
+                .InstancePerLifetimeScope()
+                .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
+
+            builder.RegisterGeneric(typeof(BaseCrudRepository<>))
+                .As(typeof(IBaseCrudRepository<>))
+                .OnActivating(OnActivatingInstanceForTesting)
                 .InstancePerLifetimeScope()
                 .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
 

@@ -6,12 +6,11 @@ using System;
 
 namespace Module.Service.Base
 {
-    public abstract class BaseEntityService<TModel, TDto, TKeyType, TRepository> : BaseService, IBaseEntityService<TDto, TKeyType>
+    public class BaseEntityService<TModel, TDto, TKeyType> : BaseService, IBaseEntityService<TDto, TKeyType>
         where TModel : BaseModel
-        where TRepository : IBaseCrudRepository<TModel>
         where TDto : BaseDto
     {
-        public abstract TRepository CrudRepository { get; set; }
+        public virtual IBaseCrudRepository<TModel> CrudRepository { get; set; }
 
         /// <summary>
         /// Remove o entidade efetuando as validações necessarias
@@ -45,14 +44,13 @@ namespace Module.Service.Base
         /// Insere os dados da entidade efetuando as validaões necessarias
         /// </summary>
         /// <param name="dtoObject">Objeto dto </param>
-        public virtual Guid Insert(TDto dtoObject)
+        public virtual TKeyType Insert(TDto dtoObject)
         {
-            dtoObject.Id = Guid.NewGuid();
             var model = Mapper.Map<TModel>(dtoObject);
             ValidateInsert(model);
 
             OpenTransaction();
-            var result = CrudRepository.Insert(model);
+            var result = CrudRepository.Insert<TKeyType>(model);
 
             Commit();
 
