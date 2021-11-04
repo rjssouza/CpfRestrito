@@ -26,16 +26,42 @@
             Objeto de configurações (registrado no início da aplicação)
             </summary>
         </member>
-        <member name="T:WebApi.Controller.ValuesController">
+        <member name="T:WebApi.Controller.CepController">
             <summary>
-            Controller de teste de template 
+            Controller de cep
             </summary>
         </member>
-        <member name="M:WebApi.Controller.ValuesController.Get">
+        <member name="P:WebApi.Controller.CepController.RestrictedCpfService">
             <summary>
-            Obter informação de saúde da api
+            Serviço para gestão de CPF
             </summary>
-            <returns>Mensagem indicando o status da api</returns>
+        </member>
+        <member name="M:WebApi.Controller.CepController.Delete(System.String)">
+            <summary>
+            Deleta cpf da lista restrita
+            </summary>
+            <param name="cpf">Cpf</param>
+            <returns>Resultado da transação</returns>
+        </member>
+        <member name="M:WebApi.Controller.CepController.Get(System.String)">
+            <summary>
+            Obtém pelo cpf
+            </summary>
+            <param name="cpf">Cpf</param>
+            <returns>Objeto cpf</returns>
+        </member>
+        <member name="M:WebApi.Controller.CepController.Get">
+            <summary>
+            Obtém todos os cpfs da lista restrita
+            </summary>
+            <returns>Lista objetos do cpf</returns>
+        </member>
+        <member name="M:WebApi.Controller.CepController.Post(Module.Dto.RestrictedCpfDto)">
+            <summary>
+            Adiciona cpf a lista restrita
+            </summary>
+            <param name="restrictedCpfDto">Objeto de cpf</param>
+            <returns>Identificador</returns>
         </member>
         <member name="T:WebApi.Filter.ExceptionFilter">
             <summary>

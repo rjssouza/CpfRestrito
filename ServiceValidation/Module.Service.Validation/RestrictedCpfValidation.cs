@@ -3,6 +3,7 @@ using Module.Service.Interface;
 using Module.Service.Validation.Base;
 using Module.Service.Validation.Interface;
 using Module.Util.Extensao;
+using System;
 using System.Text.RegularExpressions;
 
 namespace Module.Service.Validation
@@ -56,10 +57,20 @@ namespace Module.Service.Validation
         private void Cpf_CpfCannotBeDuplicate(RestrictedCpf restrictedCpf)
         {
             var message = "Este cpf já existe";
-            var existingCpf = RestrictedCpfService.GetByCpf(restrictedCpf.Cpf);
+            try
+            {
+                var existingCpf = RestrictedCpfService.GetByCpf(restrictedCpf.Cpf);
 
-            if (existingCpf != null)
-                AddError("ExistsCpfException", message);
+                if (existingCpf != null)
+                    AddError("ExistsCpfException", message);
+            }
+            catch (Exception)
+            {
+                _summary.Errors.Clear();
+            }
+            finally
+            {
+            }
         }
 
         private void Cpf_ValidateCpf(RestrictedCpf restrictedCpf)

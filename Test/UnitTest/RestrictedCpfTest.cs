@@ -19,6 +19,9 @@ namespace UnitTest
         private const string Cpf_ValidateCpfFormatting = "Cpf mal formatado";
         private const string RestrictedCpf_RestrictedCpfMustExists = "Cpf não existe";
 
+        [TestCase(TestVal.STR_LENGTH_10, TestVal.VALID_CPF, "03/11/2021", Cpf_CpfCannotBeDuplicate, TestName = "InserirCpf_CpfCannotBeDuplicate")]
+        [TestCase(TestVal.STR_LENGTH_10, TestVal.INVALID_CPF, "03/11/2021", Cpf_ValidateCpf, TestName = "InserirCpf_ValidateCpf")]
+        [TestCase(TestVal.STR_LENGTH_10, TestVal.INVALID_CPF_2, "03/11/2021", Cpf_ValidateCpfFormatting, TestName = "InserirCpf_ValidateCpfFormatting")]
         [TestCase(TestVal.STR_LENGTH_10, TestVal.VALID_CPF_2, "03/11/2021", TestVal.STR_EMPTY, TestName = "InserirCpf")]
         public void TestInsertion(string name, string cpf, DateTime createdAt, string expectedMessage)
         {
@@ -31,6 +34,18 @@ namespace UnitTest
             };
 
             void action() => restrictedCpfServce.Insert(restrictedCpf);
+
+            AssertValidationExceptionMessage(action, expectedMessage);
+        }
+
+
+        [TestCase(TestVal.VALID_CPF_2, RestrictedCpf_RestrictedCpfMustExists, TestName = "SearchCpf_RestrictedCpfMustExists")]
+        [TestCase(TestVal.VALID_CPF, TestVal.STR_EMPTY, TestName = "SearchCpf")]
+        public void TestSearch(string cpf, string expectedMessage)
+        {
+            var restrictedCpfServce = Container.Resolve<IRestrictedCpfService>();
+
+            void action() => restrictedCpfServce.GetByCpf(cpf);
 
             AssertValidationExceptionMessage(action, expectedMessage);
         }

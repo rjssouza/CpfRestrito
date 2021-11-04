@@ -10,5 +10,6 @@ namespace Module.Service.Interface
         List<RestrictedCpfDto> GetAll();
 
         RestrictedCpfDto GetByCpf(string cpf);
+        void DeleteByCpf(string cpf);
     }
 }

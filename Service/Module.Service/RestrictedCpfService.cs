@@ -11,6 +11,13 @@ namespace Module.Service
 {
     public class RestrictedCpfService : BaseEntityValidationService<RestrictedCpf, RestrictedCpfDto, Guid, IRestrictedCpfValidation>, IRestrictedCpfService
     {
+        public void DeleteByCpf(string cpf)
+        {
+            var restrictedCpf = GetByCpf(cpf);
+
+            Delete(restrictedCpf.Id);
+        }
+
         public List<RestrictedCpfDto> GetAll()
         {
             var restrictedCpfList = CrudRepository.GetAll();
