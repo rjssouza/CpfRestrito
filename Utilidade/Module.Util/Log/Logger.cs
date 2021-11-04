@@ -45,7 +45,7 @@ namespace Module.Util.Log
         /// Método para escrever log a partir da exceção
         /// </summary>
         /// <param name="ex">Exceção disparada pelo sistema</param>
-        public void Write(Exception ex)
+        public static void Write(Exception ex)
         {
         }
     }

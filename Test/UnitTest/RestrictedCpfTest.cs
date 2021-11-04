@@ -14,9 +14,9 @@ namespace UnitTest
     [TestFixture]
     public class RestrictedCpfTest : BaseTest
     {
-        private const string Cpf_CpfCannotBeDuplicate = "Este cpf já existe";
-        private const string Cpf_ValidateCpf = "Cpf inválido";
-        private const string RestrictedCpf_RestrictedCpfMustExists = "Cpf não existe";
+        private const string Cpf_CpfCannotBeDuplicate = "ExistsCpfException - Este cpf já existe";
+        private const string Cpf_ValidateCpf = "InvalidCpfException - Cpf inválido";
+        private const string RestrictedCpf_RestrictedCpfMustExists = "NotFoundCpfException - Cpf não existe";
 
         [TestCase(TestVal.STR_LENGTH_10, TestVal.VALID_CPF, "03/11/2021", Cpf_CpfCannotBeDuplicate, TestName = "InserirCpf_CpfCannotBeDuplicate")]
         [TestCase(TestVal.STR_LENGTH_10, TestVal.INVALID_CPF, "03/11/2021", Cpf_ValidateCpf, TestName = "InserirCpf_ValidateCpf")]
@@ -52,7 +52,7 @@ namespace UnitTest
         {
             var restrictedCpfList = new List<RestrictedCpf>()
             {
-                new RestrictedCpf() { Cpf  = TestVal.VALID_CPF, CreatedAt  =DateTime.Now, Name = TestVal.STR_LENGTH_10, Id = Guid.Parse(TestVal.GUID_TEST_1) }
+                new RestrictedCpf() { Cpf  = TestVal.VALID_CPF, CreatedAt  =DateTime.Now, Name = TestVal.STR_LENGTH_10, Id = TestVal.GUID_TEST_1 }
             };
 
             TestMock.Mock<IBaseCrudRepository<RestrictedCpf>>()

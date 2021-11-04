@@ -93,7 +93,7 @@ namespace WebApi.Filter
         /// <param name="ex">Exceção</param>
         private void WriteLog(Exception ex)
         {
-            _customLogger.Write(ex);
+            Logger.Write(ex);
 
             NotifyDev();
         }
