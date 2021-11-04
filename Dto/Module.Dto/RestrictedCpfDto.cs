@@ -9,6 +9,14 @@ namespace Module.Dto
     public class RestrictedCpfDto : BaseDto
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public RestrictedCpfDto()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
+
+        /// <summary>
         /// Cpf para consulta de restrição
         /// </summary>
         public string Cpf { get; set; }

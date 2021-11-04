@@ -16,12 +16,10 @@ namespace UnitTest
     {
         private const string Cpf_CpfCannotBeDuplicate = "Este cpf já existe";
         private const string Cpf_ValidateCpf = "Cpf inválido";
-        private const string Cpf_ValidateCpfFormatting = "Cpf mal formatado";
         private const string RestrictedCpf_RestrictedCpfMustExists = "Cpf não existe";
 
         [TestCase(TestVal.STR_LENGTH_10, TestVal.VALID_CPF, "03/11/2021", Cpf_CpfCannotBeDuplicate, TestName = "InserirCpf_CpfCannotBeDuplicate")]
         [TestCase(TestVal.STR_LENGTH_10, TestVal.INVALID_CPF, "03/11/2021", Cpf_ValidateCpf, TestName = "InserirCpf_ValidateCpf")]
-        [TestCase(TestVal.STR_LENGTH_10, TestVal.INVALID_CPF_2, "03/11/2021", Cpf_ValidateCpfFormatting, TestName = "InserirCpf_ValidateCpfFormatting")]
         [TestCase(TestVal.STR_LENGTH_10, TestVal.VALID_CPF_2, "03/11/2021", TestVal.STR_EMPTY, TestName = "InserirCpf")]
         public void TestInsertion(string name, string cpf, DateTime createdAt, string expectedMessage)
         {

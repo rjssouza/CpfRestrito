@@ -19,14 +19,13 @@ namespace Module.Service.Validation
             RestrictedCpf_RestrictedCpfMustExists(model);
             OnValidated();
 
-            Cpf_ValidateCpfFormatting(model);
+            Cpf_ValidateCpf(model);
             OnValidated();
         }
 
         public override void ValidateInsert(RestrictedCpf model)
         {
             base.ValidateInsert(model);
-            Cpf_ValidateCpfFormatting(model);
             Cpf_ValidateCpf(model);
             OnValidated();
 
@@ -39,14 +38,13 @@ namespace Module.Service.Validation
             RestrictedCpf_RestrictedCpfMustExists(restrictedCpf);
             OnValidated();
 
-            Cpf_ValidateCpfFormatting(restrictedCpf);
+            Cpf_ValidateCpf(restrictedCpf);
             OnValidated();
         }
 
         public override void ValidateUpdate(RestrictedCpf model)
         {
             base.ValidateUpdate(model);
-            Cpf_ValidateCpfFormatting(model);
             Cpf_ValidateCpf(model);
             OnValidated();
 
@@ -78,15 +76,6 @@ namespace Module.Service.Validation
             var message = "Cpf inválido";
 
             if (!restrictedCpf.Cpf.IsCpf())
-                AddError("InvalidCpfException", message);
-        }
-
-        private void Cpf_ValidateCpfFormatting(RestrictedCpf restrictedCpf)
-        {
-            var message = "Cpf mal formatado";
-            var regex = new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
-
-            if (!regex.IsMatch(restrictedCpf.Cpf))
                 AddError("InvalidCpfException", message);
         }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Module.Service.Interface
 {
-    public interface IRestrictedCpfService : IBaseEntityService<RestrictedCpfDto, Guid>
+    public interface IRestrictedCpfService : IBaseEntityService<RestrictedCpfDto, string>
     {
         List<RestrictedCpfDto> GetAll();
 

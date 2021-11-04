@@ -102,7 +102,7 @@ namespace Module.Factory.Conexao
         private static void CreateRestrictedCpfTable(SQLiteConnection tempConnection)
         {
             using var createCaptureTable = tempConnection.CreateCommand();
-            createCaptureTable.CommandText = "CREATE TABLE IF NOT EXISTS RestrictedCpf(id blob primary key, cpf varchar(11) not null , name varchar(50) not null , created_at datetime)";
+            createCaptureTable.CommandText = "CREATE TABLE IF NOT EXISTS RestrictedCpf(id varchar(100) primary key, cpf varchar(11) not null , name varchar(50) not null , created_at datetime)";
             createCaptureTable.ExecuteNonQuery();
         }
 

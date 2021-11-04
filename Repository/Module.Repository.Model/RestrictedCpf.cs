@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Module.Repository.Model
 {
-    public class RestrictedCpf : BaseIdentityModel<Guid>
+    public class RestrictedCpf : BaseIdentityModel<string>
     {
         [Column("cpf")]
         public string Cpf { get; set; }

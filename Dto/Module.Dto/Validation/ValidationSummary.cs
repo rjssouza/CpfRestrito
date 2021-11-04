@@ -105,7 +105,7 @@ namespace Module.Dto.Validation
             List<string> errorList = Errors
                 .Select((dictError) =>
                 {
-                    string errorsFromSubject = dictError.Value.GetErrorMessage(errorIndicator, _errorSeparator);
+                    string errorsFromSubject = $"{dictError.Key} - {dictError.Value.GetErrorMessage(errorIndicator, _errorSeparator)}";
 
                     return errorsFromSubject;
                 }).ToList();

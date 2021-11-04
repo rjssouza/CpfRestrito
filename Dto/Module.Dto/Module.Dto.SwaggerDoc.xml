@@ -9,11 +9,6 @@
             Classe base para data transfer object
             </summary>
         </member>
-        <member name="P:Module.Dto.Base.BaseDto.Id">
-            <summary>
-            Identificador da entidade
-            </summary>
-        </member>
         <member name="T:Module.Dto.Base.DescriptionBaseDto">
             <summary>
             Base objetos com nome e descrição
@@ -138,6 +133,11 @@
         <member name="T:Module.Dto.RestrictedCpfDto">
             <summary>
             Consulta restrição cpf
+            </summary>
+        </member>
+        <member name="M:Module.Dto.RestrictedCpfDto.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Module.Dto.RestrictedCpfDto.Cpf">

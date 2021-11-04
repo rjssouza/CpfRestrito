@@ -7,9 +7,5 @@ namespace Module.Dto.Base
     /// </summary>
     public class BaseDto
     {
-        /// <summary>
-        /// Identificador da entidade
-        /// </summary>
-        public Guid Id { get; set; }
     }
 }

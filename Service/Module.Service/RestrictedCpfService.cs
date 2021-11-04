@@ -9,13 +9,14 @@ using System.Linq;
 
 namespace Module.Service
 {
-    public class RestrictedCpfService : BaseEntityValidationService<RestrictedCpf, RestrictedCpfDto, Guid, IRestrictedCpfValidation>, IRestrictedCpfService
+    public class RestrictedCpfService : BaseEntityValidationService<RestrictedCpf, RestrictedCpfDto, string, IRestrictedCpfValidation>, IRestrictedCpfService
     {
         public void DeleteByCpf(string cpf)
         {
-            var restrictedCpf = GetByCpf(cpf);
+            var restrictedCpf = CrudRepository.GetAll().Where(t => t.Cpf == cpf).FirstOrDefault();
+            ValidateDeletion(restrictedCpf);
 
-            Delete(restrictedCpf.Id);
+            CrudRepository.Delete(restrictedCpf);
         }
 
         public List<RestrictedCpfDto> GetAll()
