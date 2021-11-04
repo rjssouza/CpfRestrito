@@ -48,8 +48,8 @@ namespace Module.Service.Validation.Base
         /// <param name="model">Entidade de modelo </param>
         private static void ValidarModelo(TModel model)
         {
-            if (model == null)
-                throw new ValidationException(typeof(TModel).Name, "Objeto nulo não pode ser validado");
+            //if (model == null)
+            //    throw new ValidationException(typeof(TModel).Name, "Objeto nulo não pode ser validado");
         }
     }
 }
