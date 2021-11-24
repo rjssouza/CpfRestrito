@@ -6,12 +6,12 @@ using System.IO;
 namespace WebApi
 {
     /// <summary>
-    /// Classe de entrada da aplicação net core
+    /// Classe de entrada da aplicaï¿½ï¿½o net core
     /// </summary>
     public class Program
     {
         /// <summary>
-        /// Construção de host para iis
+        /// Construï¿½ï¿½o de host para iis
         /// </summary>
         /// <param name="args">Argumentos externos</param>
         /// <returns>Host builder</returns>
@@ -23,8 +23,8 @@ namespace WebApi
                 });
 
         /// <summary>
-        /// Método de entrada da aplicação net core
-        /// O aspnet core utiliza de construção similar ao modelo de aplicações como console application ou windows services para que possa rodar como serviço auto gerenciado
+        /// Mï¿½todo de entrada da aplicaÃ§Ã£o net core
+        /// O aspnet core utiliza de construï¿½ï¿½o similar ao modelo de aplicaï¿½ï¿½es como console application ou windows services para que possa rodar como serviï¿½o auto gerenciado
         /// </summary>
         /// <param name="args">Argumentos externos</param>
         public static void Main(string[] args)
