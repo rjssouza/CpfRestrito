@@ -108,26 +108,26 @@
         </member>
         <member name="T:WebApi.Program">
             <summary>
-            Classe de entrada da aplicação net core
+            Classe de entrada da aplica��o net core
             </summary>
         </member>
         <member name="M:WebApi.Program.CreateHostBuilder(System.String[])">
             <summary>
-            Construção de host para iis
+            Constru��o de host para iis
             </summary>
             <param name="args">Argumentos externos</param>
             <returns>Host builder</returns>
         </member>
         <member name="M:WebApi.Program.Main(System.String[])">
             <summary>
-            Método de entrada da aplicação net core
-            O aspnet core utiliza de construção similar ao modelo de aplicações como console application ou windows services para que possa rodar como serviço auto gerenciado
+            M�todo de entrada da aplicação net core
+            O aspnet core utiliza de constru��o similar ao modelo de aplica��es como console application ou windows services para que possa rodar como servi�o auto gerenciado
             </summary>
             <param name="args">Argumentos externos</param>
         </member>
         <member name="T:WebApi.Startup">
             <summary>
-            Classe de inicialização da api
+            Classe de inicializa��o da api
             </summary>
         </member>
         <member name="M:WebApi.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
@@ -143,12 +143,12 @@
         </member>
         <member name="P:WebApi.Startup.Settings">
             <summary>
-            Objeto de configurações
+            Objeto de configura��es
             </summary>
         </member>
         <member name="P:WebApi.Startup.Configuration">
             <summary>
-            Serviço para acesso de configurações appsettings.json
+            Servi�o para acesso de configura��es appsettings.json
             </summary>
         </member>
         <member name="P:WebApi.Startup.HttpContextAccessor">
@@ -158,29 +158,29 @@
         </member>
         <member name="M:WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
-            Método para configurar aplicação
+            M�todo para configurar aplica��o
             </summary>
-            <param name="app">Serviço de construtor da aplicação</param>
-            <param name="env">Serviço de ambiente da aplicação</param>
+            <param name="app">Servi�o de construtor da aplica��o</param>
+            <param name="env">Servi�o de ambiente da aplica��o</param>
         </member>
         <member name="M:WebApi.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>
-            Chamada da implementação para configurar container (chamada efetuada pelo módulo Module.Ioc)
+            Chamada da implementa��o para configurar container (chamada efetuada pelo m�dulo Module.Ioc)
             </summary>
             <param name="builder">Container builder autofac</param>
         </member>
         <member name="M:WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Método para registrar serviços .net core
+            M�todo para registrar servi�os .net core
             </summary>
-            <param name="services">Registrador de serviços</param>
+            <param name="services">Registrador de servi�os</param>
         </member>
         <member name="M:WebApi.Startup.OnActivatingInstance``1(Autofac.Core.IActivatingEventArgs{``0})">
             <summary>
-            Método para ações customizadas ao ativar um tipo já cadastrado na injeção de dependencia (caso necessário)
+            M�todo para a��es customizadas ao ativar um tipo j� cadastrado na inje��o de dependencia (caso necess�rio)
             </summary>
             <typeparam name="TypeOf">Tipo</typeparam>
-            <param name="e">Tipo que está sendo instanciado</param>
+            <param name="e">Tipo que est� sendo instanciado</param>
         </member>
         <member name="M:WebApi.Startup.RegisterInternalComponents(Autofac.ContainerBuilder)">
             <summary>
@@ -190,12 +190,12 @@
         </member>
         <member name="M:WebApi.Startup.RegisterSettings">
             <summary>
-            Registro das configurações do sistema
+            Registro das configura��es do sistema
             </summary>
         </member>
         <member name="M:WebApi.Startup.ConfigureAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Configuração da autoridade de autenticação
+            Configura��o da autoridade de autentica��o
             </summary>
             <param name="services">Service Collection .Net Core</param>
         </member>
